@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MAISON D'OR — Haute Joaillerie & Vault Management System</title>
+  <link rel="icon" type="image/svg+xml" href="assets/emblem.svg">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            gold: {
+              50: '#FBF8F1',
+              100: '#F7F2E2',
+              200: '#EFE5C6',
+              300: '#DFCFA0',
+              400: '#D1B875',
+              500: '#C5A059',
+              600: '#B89248',
+              700: '#97732E',
+              800: '#7B5D27',
+              900: '#654C22',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Google Fonts: Cormorant Garamond & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="css/custom.css">
+</head>
+<body class="min-h-screen flex flex-col bg-[#FAF8F5] text-[#1A1C1E] antialiased selection:bg-amber-200 selection:text-amber-900">
+
+  <!-- Top Live Bullion Ticker Bar -->
+  <header class="border-b border-stone-200/80 dark:border-stone-800/80 bg-stone-100/40 dark:bg-stone-900/40 backdrop-blur-md sticky top-0 z-40 transition-colors">
+    <div id="live-ticker-bar"></div>
+
+    <!-- Main Navigation Bar -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-stone-200/50 dark:border-stone-800/50 py-3">
+      <div class="flex items-center justify-between gap-4">
+        
+        <!-- Brand Insignia & Title -->
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="window.JewelryApp.switchTab('dashboard')">
+          <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center shadow-sm">
+            <!-- Geometric Diamond Crest SVG -->
+            <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 3h12l4 6-10 12L2 9z"/>
+              <path d="M11 3v18"/>
+              <path d="M2 9h20"/>
+              <path d="m6 3 5 6-5 12"/>
+              <path d="m18 3-5 6 5 12"/>
+            </svg>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="font-serif-luxury text-xl font-bold tracking-widest text-stone-900 dark:text-stone-50 uppercase">
+                MAISON D'OR
+              </span>
+              <span class="text-[9px] px-1.5 py-0.5 rounded uppercase tracking-wider font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300">
+                Salon OS
+              </span>
+            </div>
+            <p class="text-[10px] text-stone-500 dark:text-stone-400 tracking-wider uppercase">
+              Haute Joaillerie & Vault Management
+            </p>
+          </div>
+        </div>
+
+        <!-- Center Navigation Tabs -->
+        <nav class="hidden lg:flex items-center space-x-1">
+          <a href="#" data-tab-target="dashboard" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg bg-amber-950/5 dark:bg-amber-400/10 text-amber-900 dark:text-amber-300 border-b-2 border-amber-600 dark:border-amber-400">
+            <span>Executive</span>
+          </a>
+          <a href="#" data-tab-target="inventory" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Vault Inventory</span>
+          </a>
+          <a href="#" data-tab-target="billing" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Billing POS</span>
+            <span id="nav-cart-badge" style="display: none;" class="w-4 h-4 rounded-full bg-amber-600 text-white text-[9px] items-center justify-center font-bold">0</span>
+          </a>
+          <a href="#" data-tab-target="melt-calculator" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Old Gold Melt</span>
+          </a>
+          <a href="#" data-tab-target="workshop" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Workshop</span>
+          </a>
+          <a href="#" data-tab-target="clients" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>VIP Patrons</span>
+          </a>
+          <a href="#" data-tab-target="reports" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Audit Ledger</span>
+          </a>
+          <a href="#" data-tab-target="settings" class="flex items-center space-x-2 px-3 py-2 text-xs font-semibold uppercase tracking-wider rounded-lg text-stone-600 dark:text-stone-400 hover:text-stone-900 hover:bg-stone-100/60 dark:hover:bg-stone-800/60 transition">
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <!-- Right Side Utility Controls -->
+        <div class="flex items-center space-x-3">
+          <!-- Currency switcher -->
+          <div class="flex items-center border border-stone-200 dark:border-stone-800 rounded-lg overflow-hidden bg-white/80 dark:bg-stone-900/80">
+            <span class="px-2 text-[10px] uppercase font-bold text-stone-400">Curr</span>
+            <select id="currency-select" class="text-xs font-semibold bg-transparent py-1.5 pr-2 pl-0.5 text-stone-800 dark:text-stone-200 focus:outline-none cursor-pointer">
+              <option value="USD">USD ($)</option>
+              <option value="EUR">EUR (€)</option>
+              <option value="GBP">GBP (£)</option>
+              <option value="INR">INR (₹)</option>
+              <option value="AED">AED (د.إ)</option>
+            </select>
+          </div>
+
+          <!-- Theme Toggle Button -->
+          <button id="theme-toggle-btn" class="w-8 h-8 rounded-lg border border-stone-200 dark:border-stone-800 bg-white/80 dark:bg-stone-900/80 flex items-center justify-center text-xs text-stone-700 dark:text-stone-300 hover:bg-stone-100 dark:hover:bg-stone-800 transition" title="Toggle Alabaster / Nocturne Theme">
+            🌙
+          </button>
+
+          <!-- Quick Sale Button -->
+          <button id="quick-new-bill-btn" class="hidden sm:flex items-center space-x-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold tracking-wider uppercase gold-gradient-bg shadow-sm hover:shadow transition">
+            <span>+ Billing</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Mobile Navigation Sub-bar -->
+      <div class="lg:hidden flex items-center space-x-2 overflow-x-auto pt-3 pb-1 no-scrollbar border-t border-stone-200/50 dark:border-stone-800/50 mt-2">
+        <a href="#" data-tab-target="dashboard" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Executive</a>
+        <a href="#" data-tab-target="inventory" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Inventory</a>
+        <a href="#" data-tab-target="billing" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">POS Billing</a>
+        <a href="#" data-tab-target="melt-calculator" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Old Gold</a>
+        <a href="#" data-tab-target="workshop" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Workshop</a>
+        <a href="#" data-tab-target="clients" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">VIP Clients</a>
+        <a href="#" data-tab-target="reports" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Reports</a>
+        <a href="#" data-tab-target="settings" class="px-2.5 py-1 rounded text-xs font-semibold whitespace-nowrap text-stone-700 dark:text-stone-300">Settings</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Views Container -->
+  <main class="flex-1">
+    <div id="view-dashboard" class="tab-view"></div>
+    <div id="view-inventory" class="tab-view hidden"></div>
+    <div id="view-billing" class="tab-view hidden"></div>
+    <div id="view-melt-calculator" class="tab-view hidden"></div>
+    <div id="view-workshop" class="tab-view hidden"></div>
+    <div id="view-clients" class="tab-view hidden"></div>
+    <div id="view-reports" class="tab-view hidden"></div>
+    <div id="view-settings" class="tab-view hidden"></div>
+  </main>
+
+  <!-- Boutique Footer -->
+  <footer class="border-t border-stone-200 dark:border-stone-800 bg-white/60 dark:bg-stone-950/60 backdrop-blur-sm py-6 mt-12 text-xs text-stone-500">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center space-x-2">
+        <span class="font-serif-luxury font-bold text-stone-900 dark:text-stone-100 tracking-wider">MAISON D'OR</span>
+        <span>•</span>
+        <span>Registered BIS Hallmark & GIA Verification Engine</span>
+      </div>
+      <div class="flex items-center space-x-4 text-stone-400">
+        <span>Vault Safe Combination: Dual-Key Armed</span>
+        <span>•</span>
+        <span id="backend-status">Connecting to MySQL backend…</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Modal Container -->
+  <div id="modal-container"></div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container"></div>
+
+  <!-- Application Logic (Classic zero-CORS scripts for double-click offline execution) -->
+  <script src="js/bootstrap.js"></script>
+</body>
+</html>

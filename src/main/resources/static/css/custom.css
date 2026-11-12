@@ -1,0 +1,274 @@
+/* ==========================================================================
+   MAISON D'OR - LUXURY JEWELRY SHOP MANAGEMENT SYSTEM
+   Bespoke Styling, Typography, Micro-interactions & Print Stylesheet
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+  /* Alabaster & Warm Champagne Light Palette */
+  --bg-primary: #FAF8F5;
+  --bg-surface: #FFFFFF;
+  --bg-subtle: #F5F1E9;
+  --border-subtle: #E8E2D5;
+  --border-focus: #C5A059;
+  
+  --text-primary: #1A1C1E;
+  --text-secondary: #5F6368;
+  --text-muted: #8E9399;
+  
+  --gold-primary: #B89248;
+  --gold-dark: #97732E;
+  --gold-light: #DFC488;
+  --gold-glow: rgba(184, 146, 72, 0.12);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Dark Mode Palette (Nocturne Obsidian & Gold) */
+body.dark-mode {
+  --bg-primary: #0C0D10;
+  --bg-surface: #14161C;
+  --bg-subtle: #1C1F27;
+  --border-subtle: #2A2E3A;
+  --border-focus: #D4B066;
+
+  --text-primary: #F4F4F6;
+  --text-secondary: #A0A5B1;
+  --text-muted: #6B7280;
+
+  --gold-primary: #D4B066;
+  --gold-dark: #B89248;
+  --gold-light: #F3E3B6;
+  --gold-glow: rgba(212, 176, 102, 0.15);
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  transition: background-color 0.25s ease, color 0.25s ease;
+  overflow-x: hidden;
+}
+
+/* Luxury Serif Headings */
+.font-serif-luxury {
+  font-family: var(--font-serif);
+  letter-spacing: 0.02em;
+}
+
+/* Gold Gradient Accents */
+.gold-gradient-text {
+  background: linear-gradient(135deg, #B89248 0%, #D4B066 50%, #97732E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body.dark-mode .gold-gradient-text {
+  background: linear-gradient(135deg, #F3E3B6 0%, #D4B066 50%, #B89248 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-gradient-bg {
+  background: linear-gradient(135deg, #B89248 0%, #A88338 100%);
+  color: #FFFFFF;
+}
+
+.gold-gradient-bg:hover {
+  background: linear-gradient(135deg, #A88338 0%, #8C6B28 100%);
+}
+
+/* Subtle Cards & Borders */
+.card-luxury {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.03);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.card-luxury:hover {
+  border-color: rgba(184, 146, 72, 0.35);
+  box-shadow: 0 8px 30px -4px rgba(184, 146, 72, 0.08);
+}
+
+/* Custom Thin Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
+}
+
+/* Metal Purity Tag Styles */
+.badge-24k {
+  background: #FEF9C3;
+  color: #854D0E;
+  border: 1px solid #FDE047;
+}
+.badge-22k {
+  background: #FEF3C7;
+  color: #92400E;
+  border: 1px solid #FCD34D;
+}
+.badge-18k {
+  background: #FFFBEB;
+  color: #B45309;
+  border: 1px solid #FDE68A;
+}
+.badge-plat {
+  background: #F1F5F9;
+  color: #334155;
+  border: 1px solid #CBD5E1;
+}
+.badge-silver {
+  background: #F8FAFC;
+  color: #475569;
+  border: 1px solid #E2E8F0;
+}
+
+body.dark-mode .badge-24k {
+  background: rgba(234, 179, 8, 0.15);
+  color: #FACC15;
+  border-color: rgba(234, 179, 8, 0.3);
+}
+body.dark-mode .badge-22k {
+  background: rgba(217, 119, 6, 0.15);
+  color: #FBBF24;
+  border-color: rgba(217, 119, 6, 0.3);
+}
+body.dark-mode .badge-18k {
+  background: rgba(180, 83, 9, 0.15);
+  color: #F59E0B;
+  border-color: rgba(180, 83, 9, 0.3);
+}
+body.dark-mode .badge-plat {
+  background: rgba(148, 163, 184, 0.15);
+  color: #CBD5E1;
+  border-color: rgba(148, 163, 184, 0.3);
+}
+
+/* Modal Overlay Animation */
+.modal-backdrop {
+  background: rgba(12, 13, 16, 0.65);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.2s ease-out;
+}
+
+.modal-content-anim {
+  animation: slideUp 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Toast Notification */
+#toast-container {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-left: 4px solid var(--gold-primary);
+  border-radius: 8px;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.15);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  animation: toastIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: 380px;
+}
+
+@keyframes toastIn {
+  from { transform: translateX(100%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+/* ==========================================================================
+   HIGH-JEWELRY BOUTIQUE INVOICE PRINT STYLES
+   Optimized for physical A4 / Letter paper with clean luxury layout
+   ========================================================================== */
+@media print {
+  /* Hide non-printable UI elements */
+  header,
+  nav,
+  #live-ticker-bar,
+  #toast-container,
+  .no-print,
+  button,
+  .modal-close-btn {
+    display: none !important;
+  }
+
+  body {
+    background: #FFFFFF !important;
+    color: #000000 !important;
+    font-size: 10pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  .modal-backdrop {
+    position: static !important;
+    background: transparent !important;
+    backdrop-filter: none !important;
+  }
+
+  .modal-content-anim {
+    box-shadow: none !important;
+    border: none !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  #invoice-print-area {
+    display: block !important;
+    padding: 20mm;
+    background: #FFFFFF !important;
+  }
+
+  .invoice-table th,
+  .invoice-table td {
+    border-bottom: 1px solid #D0D0D0 !important;
+    padding: 8px 6px !important;
+  }
+
+  .invoice-table th {
+    background-color: #F8F8F8 !important;
+    color: #000000 !important;
+    font-weight: 600 !important;
+  }
+}

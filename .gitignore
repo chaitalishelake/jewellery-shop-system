@@ -1,0 +1,11 @@
+target/
+.vscode/
+.idea/
+*.log
+.DS_Store
+
+apache-maven-3.9.9/
+maven.zip
+
+apache-maven-3.9.9/
+maven.zip
